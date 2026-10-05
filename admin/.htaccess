@@ -1,0 +1,7 @@
+# index.html must never be cached either, or a new build's script tags
+# are never even seen.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>

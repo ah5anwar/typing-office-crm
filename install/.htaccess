@@ -1,0 +1,7 @@
+# AH5 Office - installer
+Options -Indexes
+
+# never serve the engine file directly
+<Files "installer.php">
+    Require all denied
+</Files>

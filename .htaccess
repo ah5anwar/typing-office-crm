@@ -1,0 +1,16 @@
+# AH5 Office - root protection
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Block direct access to internal folders
+    RewriteRule ^(core|cron|storage|lib|backups)/ - [F,L]
+</IfModule>
+
+<FilesMatch "\.(sql|log|md|json|lock|ini|zip)$">
+    Require all denied
+</FilesMatch>
+
+<Files "config.local.php">
+    Require all denied
+</Files>

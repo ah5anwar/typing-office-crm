@@ -1,0 +1,19 @@
+# The panel is a set of JavaScript modules. Without this, a browser keeps
+# serving yesterday's copy after you upload new files, and the update never
+# appears. no-cache does not mean "download every time" — it means "ask the
+# server first"; if nothing changed the server answers 304 and nothing is
+# transferred.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+    Header unset Expires
+    Header unset Pragma
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType application/javascript "access plus 0 seconds"
+  ExpiresByType text/javascript        "access plus 0 seconds"
+  ExpiresByType text/css               "access plus 0 seconds"
+</IfModule>
